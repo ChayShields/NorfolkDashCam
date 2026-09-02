@@ -1,6 +1,9 @@
+"use client";
+
 import Image from "next/image";
 import Link from "next/link";
 import { LINKS, NAV_LINKS } from "@/lib/links";
+import { openCookieSettings } from "@/components/CookieConsent";
 
 const SOCIAL_LINKS = [
   { label: "Facebook", href: LINKS.social.facebook },
@@ -87,7 +90,22 @@ export default function Footer() {
           </div>
         </div>
 
-        <div className="mt-12 flex flex-col items-center gap-2 border-t border-asphalt-line pt-6 text-center">
+        <div className="mt-12 flex flex-col items-center gap-3 border-t border-asphalt-line pt-6 text-center">
+          <div className="flex items-center gap-4 text-xs text-ink-dim/70">
+            <Link
+              href="/privacy-policy"
+              className="underline decoration-asphalt-line underline-offset-4 transition-colors hover:text-safety-yellow"
+            >
+              Privacy Policy
+            </Link>
+            <button
+              type="button"
+              onClick={openCookieSettings}
+              className="underline decoration-asphalt-line underline-offset-4 transition-colors hover:text-safety-yellow"
+            >
+              Cookie Settings
+            </button>
+          </div>
           <p className="text-xs text-ink-dim/70">
             &copy; {new Date().getFullYear()} Norfolk Dash Cam. All rights reserved.
           </p>

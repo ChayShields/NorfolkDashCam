@@ -18,4 +18,5 @@ export const NAV_LINKS = [
   { label: "About", href: "/about" },
   { label: "Advertise", href: "/advertise" },
   { label: "Social Media", href: "/#social" },
+  { label: "Contact Us", href: "mailto:Clips@norfolkdashcam.co.uk" },
 ] as const;

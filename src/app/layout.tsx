@@ -2,8 +2,12 @@ import type { Metadata } from "next";
 import { Oswald, Work_Sans } from "next/font/google";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import GoogleAnalytics from "@/components/GoogleAnalytics";
+import CookieConsent from "@/components/CookieConsent";
 import { SITE_URL } from "@/lib/site";
 import "./globals.css";
+
+const GA_MEASUREMENT_ID = "G-RQLN4XL8DN";
 
 const oswald = Oswald({
   variable: "--font-oswald",
@@ -89,9 +93,11 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
               "<!-- THESIS: The homepage is a road you drive down, not a stack of hero-plus-cards; lane-line dividers and chevrons replace default section breaks. OWN-WORLD: Near-black asphalt ground, safety-yellow as the one committed saturated color (30-60% via stripes, buttons, dividers), condensed road-sign display type (Oswald) over humanist body grotesk (Work Sans), UK hazard-sign component language (plates, diagonal caution stripes). STORY: A social visitor lands, instantly reads what Norfolk Dash Cam is, is walked down the road through proof, submission, socials, and advertising, and acts within seconds. FIRST VIEWPORT: Full-bleed dark asphalt hero, camera-badge logo in nav, center lane line receding to a vanishing point, condensed headline plus tagline, yellow road-sign primary CTA, chevrons animating downward as the scroll cue. FORM: Road/route journey scroll, surface seed 2ccb7ea6, dealt index 3 (lead). FINISH: unreviewed and undocumented is unfinished; this build ends with the finish review, the verdict, DESIGN.md, and every shipping raster carrying its provenance. -->",
           }}
         />
+        <GoogleAnalytics measurementId={GA_MEASUREMENT_ID} />
         <Header />
         <main className="flex-1">{children}</main>
         <Footer />
+        <CookieConsent />
       </body>
     </html>
   );
