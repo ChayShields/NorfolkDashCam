@@ -1,22 +1,31 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useSyncExternalStore } from "react";
 import Script from "next/script";
 import { getConsent, onConsentChange } from "@/lib/consent";
+
+function subscribe(callback: () => void) {
+  return onConsentChange(() => callback());
+}
+
+function getSnapshot() {
+  return getConsent()?.analytics ?? false;
+}
+
+function getServerSnapshot() {
+  return false;
+}
 
 export default function GoogleAnalytics({
   measurementId,
 }: {
   measurementId: string;
 }) {
-  const [analyticsAllowed, setAnalyticsAllowed] = useState(false);
-
-  useEffect(() => {
-    setAnalyticsAllowed(getConsent()?.analytics ?? false);
-    return onConsentChange((value) =>
-      setAnalyticsAllowed(value?.analytics ?? false),
-    );
-  }, []);
+  const analyticsAllowed = useSyncExternalStore(
+    subscribe,
+    getSnapshot,
+    getServerSnapshot,
+  );
 
   if (!analyticsAllowed) return null;
 

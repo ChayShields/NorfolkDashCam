@@ -15,6 +15,14 @@ export default function CookieConsent() {
   const [visible, setVisible] = useState(false);
 
   useEffect(() => {
+    // Deliberately not a lazy useState initializer: getConsent() reads
+    // localStorage, which doesn't exist during SSR (the function returns
+    // null there), so seeding state from it synchronously during render
+    // would make the server always render the banner visible regardless of
+    // the client's real stored consent - a genuine hydration mismatch, not
+    // just a lint nitpick. Starting at false and correcting once mounted is
+    // the correct SSR-safe pattern here.
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setVisible(getConsent() === null);
 
     const openHandler = () => setVisible(true);
