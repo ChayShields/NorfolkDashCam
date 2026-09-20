@@ -4,11 +4,11 @@ import { Oswald, Work_Sans } from "next/font/google";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import GoogleAnalytics from "@/components/GoogleAnalytics";
+import { GA_MEASUREMENT_ID } from "@/lib/analytics";
 import CookieConsent from "@/components/CookieConsent";
 import { SITE_URL } from "@/lib/site";
 import "./globals.css";
 
-const GA_MEASUREMENT_ID = "G-RQLN4XL8DN";
 
 const oswald = Oswald({
   variable: "--font-oswald",

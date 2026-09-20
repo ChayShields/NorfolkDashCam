@@ -1,33 +1,18 @@
 "use client";
 
-import { useSyncExternalStore } from "react";
 import Script from "next/script";
-import { getConsent, onConsentChange } from "@/lib/consent";
+import { useConsentState } from "@/lib/consent";
 
-function subscribe(callback: () => void) {
-  return onConsentChange(() => callback());
-}
-
-function getSnapshot() {
-  return getConsent()?.analytics ?? false;
-}
-
-function getServerSnapshot() {
-  return false;
-}
-
+// Renders nothing (so no request to Google at all) until the visitor has
+// explicitly accepted. Rejecting, or never choosing, keeps GA off entirely.
 export default function GoogleAnalytics({
   measurementId,
 }: {
   measurementId: string;
 }) {
-  const analyticsAllowed = useSyncExternalStore(
-    subscribe,
-    getSnapshot,
-    getServerSnapshot,
-  );
+  const consent = useConsentState();
 
-  if (!analyticsAllowed) return null;
+  if (consent !== "accepted") return null;
 
   return (
     <>
@@ -35,10 +20,7 @@ export default function GoogleAnalytics({
         src={`https://www.googletagmanager.com/gtag/js?id=${measurementId}`}
         strategy="afterInteractive"
       />
-      <Script
-        src={`/api/ga-config?id=${encodeURIComponent(measurementId)}`}
-        strategy="afterInteractive"
-      />
+      <Script src="/api/ga-config" strategy="afterInteractive" />
     </>
   );
 }

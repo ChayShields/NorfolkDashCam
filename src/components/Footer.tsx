@@ -101,7 +101,7 @@ export default function Footer() {
             <button
               type="button"
               onClick={openCookieSettings}
-              className="underline decoration-asphalt-line underline-offset-4 transition-colors hover:text-safety-yellow"
+              className="inline-flex min-h-[44px] items-center underline decoration-asphalt-line underline-offset-4 transition-colors hover:text-safety-yellow"
             >
               Cookie Settings
             </button>

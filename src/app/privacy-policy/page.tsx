@@ -19,7 +19,7 @@ const SECTIONS = [
   },
   {
     title: "Cookies & Analytics",
-    body: "This site uses Google Analytics (GA4) to understand how visitors use the site, but only once you give consent via the cookie banner &mdash; no analytics cookie is set until you actively click Accept. IP addresses are anonymised before being processed. You can change your choice at any time using the &ldquo;Cookie Settings&rdquo; link in the footer. If you reject or ignore the banner, no analytics cookies are set and your visit is not tracked.",
+    body: "This site uses Google Analytics (GA4) to understand how visitors use the site, but only once you give consent via the cookie banner &mdash; no analytics cookie is set until you actively click Accept. If you accept, Google Analytics sets two cookies, called _ga and _ga_ followed by an ID, which last up to 2 years and identify your browser with a random ID rather than your name or contact details. You can change your choice at any time using the &ldquo;Cookie Settings&rdquo; link in the footer, which reopens the banner and removes any analytics cookies already set. If you reject or ignore the banner, Google Analytics is not loaded, no analytics cookies are set and your visit is not tracked.",
   },
   {
     title: "Footage Submissions",
