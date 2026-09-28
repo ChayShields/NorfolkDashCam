@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import { headers } from "next/headers";
 import { Oswald, Work_Sans } from "next/font/google";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
@@ -75,8 +74,7 @@ const jsonLd = {
   },
 };
 
-export default async function RootLayout({ children }: LayoutProps<"/">) {
-  const nonce = (await headers()).get("x-nonce") ?? undefined;
+export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html
       lang="en-GB"
@@ -85,7 +83,6 @@ export default async function RootLayout({ children }: LayoutProps<"/">) {
       <body className="flex min-h-full flex-col bg-asphalt font-sans text-ink antialiased">
         <script
           type="application/ld+json"
-          nonce={nonce}
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
         <div
